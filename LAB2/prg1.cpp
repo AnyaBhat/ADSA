@@ -66,7 +66,7 @@ int main(){
     s.push(60);
     s.push(70);
 
-    s.pop();
+    cout<< s.pop() << "Element Popped from the Stack";
 
     s.multipop(3);
 
