@@ -119,10 +119,19 @@ void insertNonFull(BTreeNode *node, int key) {
 // Main function to demonstrate the B-Tree
 int main() {
     BTreeNode *root = createNode(T, 1);
+    int numKeys;
 
-    // Insert elements
-    int keys[] = {10, 20, 5, 6, 15};
-    for (int i = 0; i < sizeof(keys) / sizeof(keys[0]); i++) {
+    // Get number of elements from user
+    printf("Enter the number of elements to insert: ");
+    scanf("%d", &numKeys);
+
+    // Allocate memory for the keys
+    int *keys = (int *)malloc(numKeys * sizeof(int));
+    
+    // Get elements from user
+    printf("Enter the elements:\n");
+    for (int i = 0; i < numKeys; i++) {
+        scanf("%d", &keys[i]);
         insert(&root, keys[i]);
     }
 
