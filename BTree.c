@@ -141,12 +141,14 @@ int main() {
     printf("\n");
 
     // Search for a key
-    int keyToSearch = 15;
+    int keyToSearch;
+    printf("Enter an element to search:");
+    scanf("%d",&keyToSearch);
     BTreeNode *result = search(root, keyToSearch);
     if (result != NULL) {
-        printf("Search for key %d: Found\n", keyToSearch);
+        printf("Searching  for key %d..... Found\n", keyToSearch);
     } else {
-        printf("Search for key %d: Not Found\n", keyToSearch);
+        printf("Searching for key %d ...... Not Found\n", keyToSearch);
     }
 
     // Free allocated memory (not shown here)
