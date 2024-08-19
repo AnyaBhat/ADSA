@@ -1,3 +1,4 @@
+//Binary Counter
 #include <stdio.h>
 
 #define Max 1000
