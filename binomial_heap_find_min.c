@@ -11,16 +11,6 @@ struct node {
     struct node* sibling;
 };
 
-// Function prototypes
-struct node* MAKE_bin_HEAP();
-void bin_LINK(struct node*, struct node*);
-struct node* CREATE_NODE(int);
-struct node* bin_HEAP_UNION(struct node*, struct node*);
-struct node* bin_HEAP_INSERT(struct node*, struct node*);
-struct node* bin_HEAP_MERGE(struct node*, struct node*);
-void DISPLAY_HEAP(struct node*);
-int FIND_MIN_KEY(struct node*);
-
 // Create an empty binomial heap
 struct node* MAKE_bin_HEAP() {
     return NULL;
@@ -70,7 +60,7 @@ struct node* bin_HEAP_MERGE(struct node* H1, struct node* H2) {
             next_x = z->sibling;
             z->sibling = y;
             z = next_x;
-        }
+        }   
     }
 
     return H;
@@ -173,33 +163,30 @@ int FIND_MIN_KEY(struct node* H) {
         current = current->sibling;
     }
     return min;
-}
+ }
 
 // Amortized cost analysis methods
-void accounting_method(int n) {
-    // Each insertion operation takes O(1) time amortized
-    double amortized_cost = 1.0; // Each insertion is constant time
-    double total_cost = n * amortized_cost;
-    printf("Accounting Method Analysis:\n");
-    printf("For %d insertions, total amortized cost is %.2f units.\n", n, total_cost);
-}
-
 void aggregate_method(int n) {
-    // Total cost of n insertions is O(n log n)
-    // Amortized cost per insertion: O(log n)
-    double total_cost = n * log2(n);
-    double amortized_cost = log2(n);
-    printf("Aggregate Method Analysis:\n");
-    printf("For %d insertions, total cost is approximately O(%d log %d) = %.2f units.\n", n, n, n, total_cost);
-    printf("Amortized cost per insertion is approximately O(log %d) = %.2f units.\n", n, amortized_cost);
+    double total_cost = n; // O(n) total cost for finding the minimum key
+    double amortized_cost = total_cost / n; // O(1) amortized cost per find min operation
+    printf("\nAggregate Method Analysis for FIND_MIN_KEY:\n");
+    printf("For %d find min operations, total cost is O(%d) = %.2f units.\n", n, n, total_cost);
+    printf("Amortized cost per find min operation is O(1) = %.2f units.\n", amortized_cost);
 }
 
-void potential_method(int n) {
-    // Amortized cost per insertion is O(1)
-    double amortized_cost = 1.0; // Each insertion is constant time
+// Potential method for insertion
+void accounting_method(int n) {
+    double amortized_cost = 1.0; // Each find min operation is constant time
     double total_cost = n * amortized_cost;
-    printf("Potential Method Analysis:\n");
-    printf("For %d insertions, total amortized cost is %.2f units.\n", n, total_cost);
+    printf("\nAccounting Method Analysis for FIND_MIN_KEY:\n");
+    printf("For %d find min operations, total amortized cost is %.2f units.\n", n, total_cost);
+}
+// Potential method for finding the minimum key
+void potential_method(int n) {
+    double amortized_cost = 1.0; // Each find min operation is constant time
+    double total_cost = n * amortized_cost;
+    printf("\nPotential Method Analysis for FIND_MIN_KEY:\n");
+    printf("For %d find min operations, total amortized cost is %.2f units.\n", n, total_cost);
 }
 
 // Main function to test the heap operations
@@ -234,9 +221,8 @@ int main() {
     return 0;
 }
 
-
 /*
-$ gcc -o b_e_min.out binomial_extract_min.c -lm
+$ gcc -o b_e_min.out binomial_extract_min.c -lm           
 $ ./b_e_min.out
 Enter the number of elements: 10
 Enter the elements:
@@ -250,12 +236,14 @@ Level 1: 58 11 19 17
 Level 2: 21 27 41 
 Level 3: 30 
 Minimum key in the heap: 8
-Accounting Method Analysis:
-For 10 insertions, total amortized cost is 10.00 units.
-Aggregate Method Analysis:
-For 10 insertions, total cost is approximately O(10 log 10) = 33.22 units.
-Amortized cost per insertion is approximately O(log 10) = 3.32 units.
-Potential Method Analysis:
-For 10 insertions, total amortized cost is 10.00 units.
 
+Accounting Method Analysis for FIND_MIN_KEY:
+For 10 find min operations, total amortized cost is 10.00 units.
+
+Aggregate Method Analysis for FIND_MIN_KEY:
+For 10 find min operations, total cost is O(10) = 10.00 units.
+Amortized cost per find min operation is O(1) = 1.00 units.
+
+Potential Method Analysis for FIND_MIN_KEY:
+For 10 find min operations, total amortized cost is 10.00 units.
 */
