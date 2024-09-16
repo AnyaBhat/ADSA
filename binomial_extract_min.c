@@ -282,3 +282,34 @@ int main() {
     return 0;
 }
 
+/*
+Enter the number of elements: 10
+Enter the elements:
+30 21 11 27 17 8 19 41 58 18
+
+Current state of the heap:
+
+HEAP LEVELS:
+Level 0: 18 8 
+Level 1: 58 11 19 17 
+Level 2: 21 27 41 
+Level 3: 30 
+Minimum key in the heap: 8
+
+State of the heap after extracting the minimum key:
+
+HEAP LEVELS:
+Level 0: 17 11 
+Level 1: 18 21 27 
+Level 2: 19 58 30 
+Level 3: 41 
+Accounting Method Analysis:
+For 10 insertions, total amortized cost is 10.00 units.
+Aggregate Method Analysis:
+For 10 insertions, total cost is approximately O(10 log 10) = 33.22 units.
+Amortized cost per insertion is approximately O(log 10) = 3.32 units.
+Potential Method Analysis:
+For 10 insertions, total amortized cost is 10.00 units.
+
+
+*/
